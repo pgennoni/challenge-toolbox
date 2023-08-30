@@ -1,0 +1,17 @@
+version: "3"
+services:
+  backend-node:
+    container_name: backend-node
+    build: ./backend
+    ports: 
+      - 3000:3000
+
+  nginx-react:
+    container_name: nginx-react
+    build: ./frontend
+    ports:
+      - 80:80
+    links:
+      - backend-node
+    depends_on:
+      - backend-node
